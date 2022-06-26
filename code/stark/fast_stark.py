@@ -1,10 +1,8 @@
-from stark.fri import *
-from stark.univariate import *
-from stark.multivariate import *
-from stark.ntt import *
-
-from functools import reduce
 import os
+from functools import reduce
+
+from stark.fri import *
+from stark.ntt import *
 
 
 class FastStark:
@@ -23,7 +21,7 @@ class FastStark:
                 ), "expansion factor must be a power of 2"
         assert (expansion_factor >= 4), "expansion factor must be 4 or greater"
         assert (
-            num_colinearity_checks * 2 >= security_level
+                num_colinearity_checks * 2 >= security_level
         ), "number of colinearity checks must be at least half of security level"
 
         self.field = field
@@ -65,9 +63,9 @@ class FastStark:
 
     def transition_degree_bounds(self, transition_constraints):
         point_degrees = [
-            1
-        ] + [self.original_trace_length + self.num_randomizers - 1
-             ] * 2 * self.num_registers
+                            1
+                        ] + [self.original_trace_length + self.num_randomizers - 1
+                             ] * 2 * self.num_registers
         return [
             max(
                 sum(r * l for r, l in zip(point_degrees, k))
@@ -168,8 +166,8 @@ class FastStark:
         # symbolically evaluate transition constraints
         point = [Polynomial(
             [self.field.zero(), self.field.one()])] + trace_polynomials + [
-                tp.scale(self.omicron) for tp in trace_polynomials
-            ]
+                    tp.scale(self.omicron) for tp in trace_polynomials
+                ]
         transition_polynomials = [
             a.evaluate_symbolic(point) for a in transition_constraints
         ]
@@ -201,8 +199,8 @@ class FastStark:
             proof_stream.prover_fiat_shamir())
 
         assert ([
-            tq.degree() for tq in transition_quotients
-        ] == self.transition_quotient_degree_bounds(transition_constraints)
+                    tq.degree() for tq in transition_quotients
+                ] == self.transition_quotient_degree_bounds(transition_constraints)
                 ), "transition quotient degrees do not match with expectation"
 
         # compute terms of nonlinear combination polynomial
@@ -369,10 +367,10 @@ class FastStark:
 
                 current_trace[s] = leafs[s][current_index] * zerofier.evaluate(
                     domain_current_index) + interpolant.evaluate(
-                        domain_current_index)
+                    domain_current_index)
                 next_trace[s] = leafs[s][next_index] * zerofier.evaluate(
                     domain_next_index) + interpolant.evaluate(
-                        domain_next_index)
+                    domain_next_index)
 
             point = [domain_current_index] + current_trace + next_trace
             transition_constraints_values = [

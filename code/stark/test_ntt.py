@@ -1,7 +1,7 @@
-from stark.algebra import *
-from stark.univariate import *
-from stark.ntt import *
 import os
+
+from stark.algebra import *
+from stark.ntt import *
 
 
 def test_ntt():
@@ -34,7 +34,7 @@ def test_intt():
     values_again = intt(primitive_root, coeffs)
 
     assert (
-        values == values_again), "inverse ntt is different from forward ntt"
+            values == values_again), "inverse ntt is different from forward ntt"
 
 
 def test_multiply():
@@ -100,7 +100,7 @@ def test_interpolate():
         poly = fast_interpolate(domain, values, primitive_root, n)
         print("poly degree:", poly.degree())
         values_again = fast_evaluate(poly, domain, primitive_root, n)[0:N]
-        #values_again = poly.evaluate_domain(domain)
+        # values_again = poly.evaluate_domain(domain)
 
         if values != values_again:
             print("fast interpolation and evaluation are not inverses")

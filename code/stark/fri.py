@@ -1,11 +1,7 @@
-from stark.algebra import *
-from stark.merkle import *
-from stark.ip import *
-from stark.ntt import *
-from stark.univariate import *
-
 from hashlib import blake2b
 
+from stark.merkle import *
+from stark.univariate import *
 
 
 class Fri:
@@ -38,7 +34,7 @@ class Fri:
 
     def sample_indices(self, seed, size, reduced_size, number):
         assert (
-            number <= reduced_size
+                number <= reduced_size
         ), f"cannot sample more indices than available in last codeword; requested: {number}, available: {reduced_size}"
         assert (number <= 2 * reduced_size
                 ), "not enough entropy in indices wrt last codeword"
@@ -131,7 +127,7 @@ class Fri:
 
     def prove(self, codeword, proof_stream):
         assert (
-            self.domain_length == len(codeword)
+                self.domain_length == len(codeword)
         ), "initial codeword length does not match length of initial codeword"
 
         # commit phase
@@ -187,8 +183,8 @@ class Fri:
             last_offset * (last_omega ^ i) for i in range(len(last_codeword))
         ]
         poly = Polynomial.interpolate_domain(last_domain, last_codeword)
-        #coefficients = intt(last_omega, last_codeword)
-        #poly = Polynomial(coefficients).scale(last_offset.inverse())
+        # coefficients = intt(last_omega, last_codeword)
+        # poly = Polynomial(coefficients).scale(last_offset.inverse())
 
         # verify by  evaluating
         assert (poly.evaluate_domain(last_domain) == last_codeword
@@ -204,7 +200,7 @@ class Fri:
         # get indices
         top_level_indices = self.sample_indices(
             proof_stream.verifier_fiat_shamir(), self.domain_length >> 1,
-            self.domain_length >> (self.num_rounds() - 1),
+                                                 self.domain_length >> (self.num_rounds() - 1),
             self.num_colinearity_tests)
 
         # for every round, check consistency of subsequent layers

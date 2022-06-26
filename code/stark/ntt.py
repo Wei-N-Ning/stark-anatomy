@@ -12,7 +12,7 @@ def ntt(primitive_root, values):
     assert (primitive_root ^ len(values) == field.one(
     )), "primitive root must be nth root of unity, where n is len(values)"
     assert (
-        primitive_root ^ (len(values) // 2) != field.one()
+            primitive_root ^ (len(values) // 2) != field.one()
     ), "primitive root is not primitive nth root of unity, where n is len(values)"
 
     half = len(values) // 2
@@ -127,7 +127,7 @@ def fast_interpolate(domain, values, primitive_root, root_order):
     assert (primitive_root ^ (root_order // 2) != primitive_root.field.one()
             ), "supplied root is not primitive root of supplied order"
     assert (
-        len(domain) == len(values)
+            len(domain) == len(values)
     ), "cannot interpolate over domain of different length than values list"
 
     if len(domain) == 0:
@@ -164,7 +164,7 @@ def fast_coset_evaluate(polynomial, offset, generator, order):
     scaled_polynomial = polynomial.scale(offset)
     values = ntt(
         generator, scaled_polynomial.coefficients + [offset.field.zero()] *
-        (order - len(polynomial.coefficients)))
+                   (order - len(polynomial.coefficients)))
     return values
 
 

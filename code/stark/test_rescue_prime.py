@@ -1,5 +1,6 @@
-from stark.rescue_prime import *
 import os
+
+from stark.rescue_prime import *
 
 
 def test_rescue_prime():
@@ -12,8 +13,8 @@ def test_rescue_prime():
     assert (rp.hash(
         FieldElement(57322816861100832358702415967512842988,
                      rp.field)) == FieldElement(
-                         89633745865384635541695204788332415101,
-                         rp.field)), "rescue prime test vector 2 failed"
+        89633745865384635541695204788332415101,
+        rp.field)), "rescue prime test vector 2 failed"
 
     # test trace boundaries
     a = FieldElement(57322816861100832358702415967512842988, rp.field)

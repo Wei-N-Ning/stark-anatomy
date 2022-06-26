@@ -1,6 +1,3 @@
-from stark.algebra import *
-
-
 class Polynomial:
 
     def __init__(self, coefficients):
@@ -118,7 +115,7 @@ class Polynomial:
 
     def interpolate_domain(domain, values):
         assert (
-            len(domain) == len(values)
+                len(domain) == len(values)
         ), "number of elements in domain does not match number of values -- cannot interpolate"
         assert (len(domain) > 0), "cannot interpolate between zero points"
         field = domain[0].field

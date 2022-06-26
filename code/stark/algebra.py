@@ -109,7 +109,7 @@ class Field:
     def primitive_nth_root(self, n):
         if self.p == 1 + 407 * (1 << 119):
             assert (
-                n <= 1 << 119 and (n & (n - 1)) == 0
+                    n <= 1 << 119 and (n & (n - 1)) == 0
             ), "Field does not have nth root of unity where n > 2^119 or not power of two."
             root = FieldElement(85408008396924667383611388730472331217, self)
             order = 1 << 119

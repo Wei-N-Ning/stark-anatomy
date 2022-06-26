@@ -1,10 +1,9 @@
-from stark.rescue_prime import *
-from stark.stark import *
-
-from hashlib import blake2s
-
 import os
 import pickle as pickle
+from hashlib import blake2s
+
+from stark.rescue_prime import *
+from stark.stark import *
 
 
 class SignatureProofStream(ProofStream):
@@ -20,7 +19,7 @@ class SignatureProofStream(ProofStream):
     def verifier_fiat_shamir(self, num_bytes=32):
         return shake_256(self.prefix +
                          pickle.dumps(self.objects[:self.read_index])).digest(
-                             num_bytes)
+            num_bytes)
 
     def deserialize(self, bb):
         sps = SignatureProofStream(self.document)

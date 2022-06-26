@@ -1,5 +1,4 @@
 from stark.algebra import *
-from stark.univariate import *
 from stark.multivariate import *
 
 
@@ -18,22 +17,22 @@ class RescuePrime:
             FieldElement(v, self.field)
             for v in [270497897142230380135924736767050121214, 4]
         ],
-                    [
-                        FieldElement(v, self.field)
-                        for v in [270497897142230380135924736767050121205, 13]
-                    ]]
+            [
+                FieldElement(v, self.field)
+                for v in [270497897142230380135924736767050121205, 13]
+            ]]
         self.MDSinv = [[
             FieldElement(v, self.field) for v in [
                 210387253332845851216830350818816760948,
                 60110643809384528919094385948233360270
             ]
         ],
-                       [
-                           FieldElement(v, self.field) for v in [
-                               90165965714076793378641578922350040407,
-                               180331931428153586757283157844700080811
-                           ]
-                       ]]
+            [
+                FieldElement(v, self.field) for v in [
+                90165965714076793378641578922350040407,
+                180331931428153586757283157844700080811
+            ]
+            ]]
         self.round_constants = [
             FieldElement(v, self.field) for v in [
                 174420698556543096520990950387834928928,
@@ -263,7 +262,7 @@ class RescuePrime:
         for i in range(self.m):
             domain = [omicron ^ r for r in range(0, self.N)]
             values = [self.field.zero()] * self.N
-            #for r in range(self.N):
+            # for r in range(self.N):
             #    print("len(round_constants):", len(self.round_constants), " but grabbing index:", 2*r*self.m+self.m+i, "for r=", r, "for m=", self.m, "for i=", i)
             #    values[r] = self.round_constants[2*r*self.m + self.m + i]
             values = [
@@ -301,7 +300,7 @@ class RescuePrime:
             rhs = MPolynomial.constant(self.field.zero())
             for k in range(self.m):
                 rhs = rhs + MPolynomial.constant(self.MDSinv[i][k]) * (
-                    next_state[k] - second_step_constants[k])
+                        next_state[k] - second_step_constants[k])
             rhs = rhs ^ self.alpha
 
             # equate left and right hand sides

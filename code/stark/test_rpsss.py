@@ -1,6 +1,7 @@
-from stark.rpsss import *
-from stark.fast_rpsss import *
 from time import time
+
+from stark.fast_rpsss import *
+from stark.rpsss import *
 
 
 def test_rpsss():
@@ -40,7 +41,7 @@ def test_rpsss():
         print("signature fails to authenticate bad document! \\o/")
 
     print("size of signature:", len(sig), "bytes, or ",
-          len(sig) / (2**13), "kB")
+          len(sig) / (2 ** 13), "kB")
 
 
 def test_fast_rpsss():
@@ -80,4 +81,4 @@ def test_fast_rpsss():
         print("signature fails to authenticate bad document! \\o/")
 
     print("size of signature:", len(sig), "bytes, or ",
-          len(sig) / (2**13), "kB")
+          len(sig) / (2 ** 13), "kB")

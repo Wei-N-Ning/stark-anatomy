@@ -13,7 +13,7 @@ def test_evaluate():
         two) * variables[1] + MPolynomial.constant(five) * (variables[2] ^ 3)
     mpoly2 = MPolynomial.constant(
         one) * variables[0] * variables[3] + MPolynomial.constant(five) * (
-            variables[3] ^ 3) + MPolynomial.constant(five)
+                     variables[3] ^ 3) + MPolynomial.constant(five)
 
     mpoly3 = mpoly1 * mpoly2
 
@@ -24,10 +24,10 @@ def test_evaluate():
     eval3 = mpoly3.evaluate(point)
 
     assert (
-        eval1 * eval2 == eval3
+            eval1 * eval2 == eval3
     ), "multivariate polynomial multiplication does not commute with evaluation"
     assert (
-        eval1 + eval2 == (mpoly1 + mpoly2).evaluate(point)
+            eval1 + eval2 == (mpoly1 + mpoly2).evaluate(point)
     ), "multivariate polynomial addition does not commute with evaluation"
 
     print("eval3:", eval3.value)

@@ -31,8 +31,8 @@ class Merkle:
         else:
             return Merkle.open_(index - len(leafs) // 2,
                                 leafs[len(leafs) // 2:]) + [
-                                    Merkle.commit_(leafs[:len(leafs) // 2])
-                                ]
+                       Merkle.commit_(leafs[:len(leafs) // 2])
+                   ]
 
     def open(index, data_array):
         return Merkle.open_(

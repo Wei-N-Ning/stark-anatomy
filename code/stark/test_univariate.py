@@ -1,5 +1,6 @@
-from stark.univariate import *
 import os
+
+from stark.univariate import *
 
 
 def test_distributivity():
@@ -16,8 +17,8 @@ def test_distributivity():
     lhs = a * (b + c)
     rhs = a * b + a * c
     assert (
-        lhs == rhs), "distributivity fails for polynomials: {} =/= {}".format(
-            lhs.__str__(), rhs.__str__())
+            lhs == rhs), "distributivity fails for polynomials: {} =/= {}".format(
+        lhs.__str__(), rhs.__str__())
 
     print("univariate polynomial distributivity success \\o/")
 
