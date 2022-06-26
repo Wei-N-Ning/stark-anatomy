@@ -1,6 +1,7 @@
 from hashlib import blake2b
 
 from stark.algebra import FieldElement
+from stark.ip import ProofStream
 from stark.merkle import Merkle
 from stark.univariate import Polynomial, test_colinearity
 
@@ -61,7 +62,7 @@ class Fri:
             self.offset * (self.omega ^ i) for i in range(self.domain_length)
         ]
 
-    def commit(self, codeword, proof_stream, round_index=0):
+    def commit(self, codeword, proof_stream: ProofStream, round_index=0):
         one = self.field.one()
         two = FieldElement(2, self.field)
         omega = self.omega
