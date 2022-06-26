@@ -17,12 +17,12 @@ class Merkle:
                 Merkle.commit_(leafs[len(leafs) // 2:])).digest()
 
     @staticmethod
-    def commit(data_array):
+    def commit(data_array: list[Any]):
         return Merkle.commit_(
             [Merkle.H(bytes(da)).digest() for da in data_array])
 
     @staticmethod
-    def open_(index, leafs):
+    def open_(index: int, leafs: list[Any]):
         assert (len(leafs) &
                 (len(leafs) - 1) == 0), "length must be power of two"
         assert (0 <= index < len(leafs)), "cannot open invalid index"
@@ -39,7 +39,7 @@ class Merkle:
                    ]
 
     @staticmethod
-    def open(index, data_array):
+    def open(index: int, data_array: list[Any]):
         return Merkle.open_(
             index, [Merkle.H(bytes(da)).digest() for da in data_array])
 
