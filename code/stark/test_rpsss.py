@@ -2,7 +2,8 @@ from rpsss import *
 from fast_rpsss import *
 from time import time
 
-def test_rpsss( ):
+
+def test_rpsss():
     print("Testing R'*K signature scheme ...")
     rpsss = RPSSS()
 
@@ -38,9 +39,11 @@ def test_rpsss( ):
     else:
         print("signature fails to authenticate bad document! \\o/")
 
-    print("size of signature:", len(sig), "bytes, or ", len(sig) / (2**13), "kB")
+    print("size of signature:", len(sig), "bytes, or ",
+          len(sig) / (2**13), "kB")
 
-def test_fast_rpsss( ):
+
+def test_fast_rpsss():
     print("Testing *FAST* R'*K signature scheme ...")
     rpsss = FastRPSSS()
 
@@ -76,5 +79,5 @@ def test_fast_rpsss( ):
     else:
         print("signature fails to authenticate bad document! \\o/")
 
-    print("size of signature:", len(sig), "bytes, or ", len(sig) / (2**13), "kB")
-
+    print("size of signature:", len(sig), "bytes, or ",
+          len(sig) / (2**13), "kB")

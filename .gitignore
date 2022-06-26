@@ -1,3 +1,5 @@
 docs/_site/*
 docs/_site/
 .venv/
+dist
+build
