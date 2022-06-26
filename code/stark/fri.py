@@ -1,7 +1,8 @@
 from hashlib import blake2b
 
-from stark.merkle import *
-from stark.univariate import *
+from stark.algebra import FieldElement
+from stark.merkle import Merkle
+from stark.univariate import Polynomial, test_colinearity
 
 
 class Fri:
@@ -26,13 +27,15 @@ class Fri:
             num_rounds += 1
         return num_rounds
 
+    @staticmethod
     def sample_index(byte_array, size):
         acc = 0
         for b in byte_array:
             acc = (acc << 8) ^ int(b)
         return acc % size
 
-    def sample_indices(self, seed, size, reduced_size, number):
+    @staticmethod
+    def sample_indices(seed, size, reduced_size, number):
         assert (
                 number <= reduced_size
         ), f"cannot sample more indices than available in last codeword; requested: {number}, available: {reduced_size}"
@@ -199,8 +202,9 @@ class Fri:
 
         # get indices
         top_level_indices = self.sample_indices(
-            proof_stream.verifier_fiat_shamir(), self.domain_length >> 1,
-                                                 self.domain_length >> (self.num_rounds() - 1),
+            proof_stream.verifier_fiat_shamir(),
+            self.domain_length >> 1,
+            self.domain_length >> (self.num_rounds() - 1),
             self.num_colinearity_tests)
 
         # for every round, check consistency of subsequent layers
@@ -237,25 +241,24 @@ class Fri:
                 ax = offset * (omega ^ a_indices[s])
                 bx = offset * (omega ^ b_indices[s])
                 cx = alphas[r]
-                if test_colinearity([(ax, ay), (bx, by), (cx, cy)]) == False:
+                if not test_colinearity([(ax, ay), (bx, by), (cx, cy)]):
                     print("colinearity check failure")
                     return False
 
             # verify authentication paths
             for i in range(self.num_colinearity_tests):
                 path = proof_stream.pull()
-                if Merkle.verify(roots[r], a_indices[i], path, aa[i]) == False:
+                if not Merkle.verify(roots[r], a_indices[i], path, aa[i]):
                     print(
                         "merkle authentication path verification fails for aa")
                     return False
                 path = proof_stream.pull()
-                if Merkle.verify(roots[r], b_indices[i], path, bb[i]) == False:
+                if not Merkle.verify(roots[r], b_indices[i], path, bb[i]):
                     print(
                         "merkle authentication path verification fails for bb")
                     return False
                 path = proof_stream.pull()
-                if Merkle.verify(roots[r + 1], c_indices[i], path,
-                                 cc[i]) == False:
+                if not Merkle.verify(roots[r + 1], c_indices[i], path, cc[i]):
                     print(
                         "merkle authentication path verification fails for cc")
                     return False
