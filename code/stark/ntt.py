@@ -1,3 +1,4 @@
+from stark.algebra import FieldElement
 from stark.univariate import *
 
 
