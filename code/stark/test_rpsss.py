@@ -1,5 +1,5 @@
-from rpsss import *
-from fast_rpsss import *
+from stark.rpsss import *
+from stark.fast_rpsss import *
 from time import time
 
 

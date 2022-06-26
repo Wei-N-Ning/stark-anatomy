@@ -1,7 +1,8 @@
-from fri import *
-from univariate import *
-from multivariate import *
-from ntt import *
+from stark.fri import *
+from stark.univariate import *
+from stark.multivariate import *
+from stark.ntt import *
+
 from functools import reduce
 import os
 

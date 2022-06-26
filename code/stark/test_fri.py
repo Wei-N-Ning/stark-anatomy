@@ -1,5 +1,5 @@
-from algebra import *
-from fri import *
+from stark.algebra import *
+from stark.fri import *
 
 
 def test_fri():

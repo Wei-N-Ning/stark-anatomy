@@ -1,4 +1,4 @@
-from ip import *
+from stark.ip import *
 
 
 def test_serialize():

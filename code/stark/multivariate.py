@@ -1,4 +1,4 @@
-from univariate import *
+from stark.univariate import *
 
 
 class MPolynomial:

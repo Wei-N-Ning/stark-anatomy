@@ -1,10 +1,10 @@
-from algebra import *
-from univariate import *
-from multivariate import *
-from rescue_prime import *
-from fri import *
-from ip import *
-from fast_stark import *
+from stark.algebra import *
+from stark.univariate import *
+from stark.multivariate import *
+from stark.rescue_prime import *
+from stark.fri import *
+from stark.ip import *
+from stark.fast_stark import *
 
 import unittest
 

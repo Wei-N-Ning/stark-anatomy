@@ -1,5 +1,5 @@
-from rescue_prime import *
-from fast_stark import *
+from stark.rescue_prime import *
+from stark.fast_stark import *
 from hashlib import blake2s
 import os
 import pickle as pickle

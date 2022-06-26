@@ -1,6 +1,8 @@
-from rescue_prime import *
-from stark import *
+from stark.rescue_prime import *
+from stark.stark import *
+
 from hashlib import blake2s
+
 import os
 import pickle as pickle
 

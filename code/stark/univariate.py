@@ -1,4 +1,4 @@
-from algebra import *
+from stark.algebra import *
 
 
 class Polynomial:

@@ -1,4 +1,4 @@
-from rescue_prime import *
+from stark.rescue_prime import *
 import os
 
 

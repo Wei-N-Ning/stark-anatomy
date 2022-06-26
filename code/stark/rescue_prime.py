@@ -1,6 +1,6 @@
-from algebra import *
-from univariate import *
-from multivariate import *
+from stark.algebra import *
+from stark.univariate import *
+from stark.multivariate import *
 
 
 class RescuePrime:

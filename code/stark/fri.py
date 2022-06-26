@@ -1,12 +1,11 @@
-from algebra import *
-from merkle import *
-from ip import *
-from ntt import *
-from binascii import hexlify, unhexlify
-import math
+from stark.algebra import *
+from stark.merkle import *
+from stark.ip import *
+from stark.ntt import *
+from stark.univariate import *
+
 from hashlib import blake2b
 
-from univariate import *
 
 
 class Fri:

@@ -1,6 +1,6 @@
-from algebra import *
-from univariate import *
-from ntt import *
+from stark.algebra import *
+from stark.univariate import *
+from stark.ntt import *
 import os
 
 

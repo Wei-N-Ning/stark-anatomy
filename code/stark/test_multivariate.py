@@ -1,4 +1,4 @@
-from multivariate import *
+from stark.multivariate import *
 
 
 def test_evaluate():

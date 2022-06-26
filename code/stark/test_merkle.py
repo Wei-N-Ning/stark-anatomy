@@ -1,4 +1,5 @@
-from merkle import Merkle
+from stark.merkle import Merkle
+
 from os import urandom
 
 
