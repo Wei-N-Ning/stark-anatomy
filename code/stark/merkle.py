@@ -1,10 +1,12 @@
 from hashlib import blake2b
+from typing import Any
 
 
 class Merkle:
     H = blake2b
 
-    def commit_(leafs):
+    @staticmethod
+    def commit_(leafs: list[Any]):
         assert (len(leafs) &
                 (len(leafs) - 1) == 0), "length must be power of two"
         if len(leafs) == 1:
@@ -14,14 +16,16 @@ class Merkle:
                 Merkle.commit_(leafs[:len(leafs) // 2]) +
                 Merkle.commit_(leafs[len(leafs) // 2:])).digest()
 
+    @staticmethod
     def commit(data_array):
         return Merkle.commit_(
             [Merkle.H(bytes(da)).digest() for da in data_array])
 
+    @staticmethod
     def open_(index, leafs):
         assert (len(leafs) &
                 (len(leafs) - 1) == 0), "length must be power of two"
-        assert (0 <= index and index < len(leafs)), "cannot open invalid index"
+        assert (0 <= index < len(leafs)), "cannot open invalid index"
         if len(leafs) == 2:
             return [leafs[1 - index]]
         elif index < (len(leafs) / 2):
@@ -34,13 +38,14 @@ class Merkle:
                        Merkle.commit_(leafs[:len(leafs) // 2])
                    ]
 
+    @staticmethod
     def open(index, data_array):
         return Merkle.open_(
             index, [Merkle.H(bytes(da)).digest() for da in data_array])
 
+    @staticmethod
     def verify_(root, index, path, leaf):
-        assert (0 <= index and index <
-                (1 << len(path))), "cannot verify invalid index"
+        assert (0 <= index < (1 << len(path))), "cannot verify invalid index"
         if len(path) == 1:
             if index == 0:
                 return root == Merkle.H(leaf + path[0]).digest()
@@ -54,6 +59,7 @@ class Merkle:
                 return Merkle.verify_(root, index >> 1, path[1:],
                                       Merkle.H(path[0] + leaf).digest())
 
+    @staticmethod
     def verify(root, index, path, data_element):
         return Merkle.verify_(root, index, path,
                               Merkle.H(bytes(data_element)).digest())
